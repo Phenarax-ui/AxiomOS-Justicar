@@ -1,4 +1,4 @@
 # AxiomOS-Justicar
 
-
-there is to be no use of this without my explicit permission 
+©2026 Eli pruett. All rights reserved.
+This software and associated documentation may not be used, copied, modified, distributed, or sublicensed without express written permission from the author.
