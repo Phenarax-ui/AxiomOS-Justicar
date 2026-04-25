@@ -59,7 +59,7 @@ Reason
 Code
 9BF
 9B
-Function (frontier/orchestration)
+Face (orchestration)
 Design Principle
 Each functional role (Memory, Reason, Code) is instantiated at multiple parameter scales (3B, 8B, 14B), allowing the system to route tasks to the appropriate depth of processing. The 9BF node appears to serve as the orchestration layer.
 
