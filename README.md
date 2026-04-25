@@ -406,3 +406,205 @@ Engine-based (not monolithic)
 Sandbox-separated
 Governance-layer protected
 Fully reproducible across machines
+
+
+
+Here is a clean, build-ready router_v3.md for Irwin’s model escalation + routing system, aligned with everything you’ve established (offline-first, layered safety, sandbox separation, and incremental capability scaling).
+This version is intentionally implementation-neutral but system-accurate, so Codegen or your future router engine can translate it directly into logic.
+================================================================
+ROUTER_V3 — IRWIN MODEL ESCALATION & ROUTING SPEC
+================================================================
+Purpose:
+Defines how Irwin selects, escalates, and de-escalates models
+across workloads in a local-first, offline AI system.
+
+Core principle:
+"Start small. Prove necessity. Escalate only when required."
+================================================================
+================================================================
+1. MODEL TIER DEFINITIONS (LOCAL STACK)
+================================================================
+Tier 0 — Micro Models (1.5B class)
+Fast reasoning
+Simple classification
+routing decisions
+lightweight summarization
+safety pre-checks
+Use for:
+intent detection
+query classification
+tool routing decisions
+preprocessing input
+Constraints:
+low context depth
+no multi-step reasoning tasks
+Tier 1 — Small Models (3B class)
+structured reasoning
+basic code generation
+simple planning
+doc summarization
+chat fallback
+Use for:
+normal assistant queries
+lightweight coding help
+summarization
+document parsing
+Tier 2 — Medium Models (7B class)
+strong reasoning
+multi-step planning
+code generation (single-file systems)
+tool orchestration suggestions
+knowledge graph reasoning
+Use for:
+engine design
+architecture planning
+moderate codegen tasks
+structured analysis
+Tier 3 — Large Models (13B–14B class)
+deep reasoning
+system design
+multi-file code generation
+debugging complex systems
+high-context synthesis
+Use for:
+Irwin engine building
+architecture refactors
+KG reconstruction logic
+complex debugging
+================================================================
+2. ROUTING PRINCIPLES
+================================================================
+Principle A — Start Low
+All requests begin at the lowest viable model (Tier 0 or Tier 1).
+Principle B — Escalate Only on Failure
+Escalation occurs only if:
+confidence is low
+reasoning depth is insufficient
+output is inconsistent
+multi-step structure is required
+Principle C — Never Pre-Overpower
+Do NOT default to large models.
+Principle D — De-escalation Required
+After completion:
+always attempt downgrade
+reset to lowest viable tier
+Principle E — Sandbox Isolation
+Test Lake / Red Team contexts:
+DO NOT escalate automatically
+require explicit override flag
+================================================================
+3. ROUTING DECISION TREE
+================================================================
+STEP 1 — CLASSIFY TASK
+Input is classified into:
+chat / conversation
+planning
+coding
+system design
+reasoning
+tool execution
+sandbox experiment
+STEP 2 — ASSIGN BASE TIER
+Task Type
+Base Model
+simple chat
+Tier 0
+classification
+Tier 0
+basic Q&A
+Tier 1
+summarization
+Tier 1
+coding help
+Tier 1
+system design
+Tier 2
+architecture
+Tier 2
+complex reasoning
+Tier 2
+multi-file build
+Tier 3
+KG reconstruction
+Tier 3
+STEP 3 — EVALUATE COMPLEXITY
+Escalate if ANY condition is true:
+multi-step dependency chain exists
+output requires cross-file reasoning
+ambiguity cannot be resolved at current tier
+failure detected in previous attempt
+safety or verification logic required
+STEP 4 — ESCALATION PATH
+Escalation must follow strict order:
+
+Tier 0 → Tier 1 → Tier 2 → Tier 3
+No skipping tiers unless explicitly overridden.
+STEP 5 — DE-ESCALATION RULE
+After successful output:
+downgrade one tier
+re-evaluate next request at lower tier
+avoid model inertia
+================================================================
+4. SPECIAL CONTEXT RULES
+================================================================
+A — Sandbox Mode (Test Lake / Red Team / Purple Team)
+NEVER escalate automatically
+treat all outputs as non-production
+prefer Tier 1 or Tier 2 max
+B — Codegen Context
+default Tier 1 or Tier 2
+Tier 3 ONLY if:
+multi-file generation required
+system-level reasoning required
+ALWAYS require validation step
+C — Axiom / Governance Context
+prefer Tier 2
+Tier 3 only for constitution changes or system-wide reasoning
+D — IrwinSec Context
+prefer Tier 2
+Tier 3 only for threat modeling or structural analysis
+================================================================
+5. CONFIDENCE MODEL
+================================================================
+Each model output must implicitly assign:
+confidence score (low / medium / high)
+Escalation triggers:
+low confidence + structural task → escalate
+contradiction detected → escalate
+incomplete reasoning → escalate
+================================================================
+6. ROUTER FLAGS
+================================================================
+FORCE_LOW
+prevents escalation entirely
+used in sandbox / experiments
+FORCE_HIGH
+bypasses routing only with explicit approval
+rare / founder-only contexts
+NO_ESCALATE_SANDBOX
+disables Tier 3 in Test Lake
+SAFE_MODE
+caps at Tier 2
+================================================================
+7. LOGGING REQUIREMENTS
+================================================================
+Router must log:
+initial tier selection
+escalation steps
+reason for escalation
+final tier used
+de-escalation decision
+Logs stored in:
+
+~/Irwin/logs/router/
+================================================================
+8. DESIGN PHILOSOPHY
+================================================================
+Small models think fast
+Large models think deep
+Routing is the intelligence layer
+Escalation is expensive and must be justified
+Simplicity is the default state
+================================================================
+END OF ROUTER_V3 SPEC
+================================================================
