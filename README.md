@@ -24,6 +24,9 @@ This project is currently under active legal review for dual licensing. The inte
 Open Source: GNU Affero General Public License v3.0 (AGPL-3.0) for public, non-commercial, and FOSS use
 Commercial: A separate commercial license with revenue share terms for SaaS deployments and enterprise use
 Defense/National Security: A restricted exception for authorized DoD and allied national security entities requiring proprietary extensions
+This notice reflects intent only and does not constitute a license grant. All rights remain reserved until the dual license is formally published.
+For early licensing inquiries:
+eli.pruett.775@gmail.com
 
 
 
