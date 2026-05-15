@@ -1,0 +1,74 @@
+AxiomOS / Justicar
+An operating system where the ethics are the infrastructure.
+AxiomOS is a constitutional AI operating system in which governance, privacy, education, and trust are enforced at the kernel level — not the application layer. Most AI systems bolt ethics on top as policy. AxiomOS builds them in as structure. The difference is the difference between a rule and a law of physics.
+Built by a self-taught systems architect. Rebuilt from memory after multiple hardware losses. The architecture survived. Development is resuming.
+The Problem
+Current AI infrastructure is centralized, extractive, and ungovernable by the people it affects.
+Privacy lives in policies that can be updated overnight
+Educational tools surveil learners while claiming to serve them
+Social platforms optimize for engagement over human wellbeing
+Governance systems can be captured by whoever has the most money
+Rural and underserved communities have no access to any of it
+AxiomOS addresses all of these at the architectural level — not through better promises, but through structural constraints that cannot be quietly removed.
+The Architecture
+Six core components in dependency order:
+Component
+What It Does
+Constitutional Layer
+The rules everything inherits. Kernel-level enforcement. Not policy — physics.
+Natural Language Shell
+Plain English as the primary OS interface. Anyone can instruct the system by describing what they want.
+Dual Data Lake
+Public and private data separation. Air-gapped private lake activated by hardware key.
+Agora
+Federated deliberation and governance platform. Search-based discovery. No engagement optimization. No character limits.
+Mastery Engine
+Adaptive educational infrastructure. Learns how you learn. Serves the learner — constitutionally prohibited from surveilling them.
+Axiom Coin
+Non-transferable contribution tracking. Hard trust cap prevents governance capture by financial contribution.
+Everything runs on a HaLow 802.11ah mesh network that does not depend on centralized internet infrastructure.
+Why Kernel Level
+Application-layer governance is a bouncer outside a club. Someone who doesn't want to follow the rules uses a different entrance.
+Kernel-level governance is the building itself. There is no other entrance.
+Every process crosses the kernel boundary to do anything meaningful — read a file, write to the network, allocate memory. Constitutional enforcement at that chokepoint means no application can bypass it. Bypassing it would require operating below kernel space, which userspace cannot do by definition.
+Not for complexity. For inescapability.
+Documentation
+Component Introductions
+Natural Language Shell — closing the gap between human intent and computation
+Mastery Engine — adaptive education for people institutions left behind
+Agora — federated platform for human connection and constitutional governance
+Architecture
+Kernel Architecture V1 — constitutional enforcement at the OS level
+Extended Architecture V2 — NLS, P2P tunneling, dual identity, role-separated governance
+Core Architecture — six components, no tool sprawl
+Mesh Layer — HaLow 802.11ah community infrastructure
+Governance
+Axiom Constitution V1 — living draft, awaiting founder input
+Project Planning
+Phase 1 — Proof of Concept
+Phase 2 — Network Scale
+Phase 3 — Global Distribution
+Current Status
+Research and architecture phase. All core components are fully specified and documented. A proof of concept implementation of the Mastery Engine is the primary Phase 1 software deliverable.
+Prior proof of concept ran on consumer hardware and included:
+Constitutional governance layer
+Autonomous LoRA training loops
+Self-healing architecture
+Knowledge graph with 496 nodes and 5,000+ edges
+MoE routing across 3B/7B/14B models
+Meta-teacher generating its own training data
+Development was interrupted by hardware loss and a medical crisis. The architecture survived. Rebuilding now.
+Licensing
+AxiomOS is dual-licensed:
+AGPL-3.0 for open community use
+Commercial license for enterprise and SaaS deployment with revenue share back to the commons
+All rights reserved during the current pre-licensing period to protect the architecture prior to formal licensing. This is a feature of the design, not a contradiction — the system is built to be open and the licensing will reflect that once properly structured.
+Contributing
+This project is in pre-founder phase. The governance structure that will manage contributions is itself being built.
+If you are interested in becoming a founder contributor — technical, ethical, or verification roles — see the Constitution V1 for role descriptions and the governance philosophy.
+Feedback, critique, and architectural challenge are welcome via GitHub issues.
+Contact
+Mastodon: @phenarax_ui
+Email: quietstatix@proton.me
+GoFundMe: Support the rebuild
+Axiom Technologies — AGPL-3.0 — Treat humans like humans, not like systems.
