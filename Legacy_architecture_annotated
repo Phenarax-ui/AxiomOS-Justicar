@@ -118,3 +118,5 @@ Axiom Coin — contribution tracking
 The knowledge graph is queried through the natural language shell. The hardware profiler is replaced by a plain language conversation. The self-healing architecture is replaced by constitutional evaluation of system state. The teach command becomes the mastery engine. The constitutional layer moves from markdown files in /axiom/ to kernel-level enforcement.
 The file tree above is not what AxiomOS will look like. It is what AxiomOS had to look like before the kernel path was clear.
 
+Legacy documentation preserved to establish project timeline and architectural provenance. All specifications described herein represent prior development states. Current architecture is documented in the main repository.
+
