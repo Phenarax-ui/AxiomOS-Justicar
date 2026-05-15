@@ -1,0 +1,39 @@
+Document 2: Model Architecture Specification
+Document date: December 2, 2025. This is the earliest formal specification of the multi-model architecture.
+Code
+
+Core Architecture: Fully Connected Agent Mesh
+
+The system uses a fully connected mesh topology where every agent
+node communicates bidirectionally with every other node. No single
+point of failure, no hierarchical bottleneck.
+
+Agent Nodes:
+Node  | Parameters | Function
+3BM   | 3B         | Memory
+3BR   | 3B         | Reason
+3BC   | 3B         | Code
+8BM   | 8B         | Memory
+8BR   | 8B         | Reason
+8BC   | 8B         | Code
+14BM  | 14B        | Memory
+14BR  | 14B        | Reason
+14BC  | 14B        | Code
+9BF   | 9B         | Face (orchestration)
+
+Design Principle:
+Each functional role (Memory, Reason, Code) is instantiated at
+multiple parameter scales (3B, 8B, 14B), allowing the system to
+route tasks to the appropriate depth of processing. The 9BF node
+serves as the orchestration layer.
+
+What This Was
+This December 2025 specification documents the Mixture of Experts architecture at the heart of the original Irwin system. Rather than using a single large model, the system distributed cognitive work across specialized nodes — dedicated memory agents, reasoning agents, and code agents — at three different parameter scales. The 9BF orchestration node managed routing decisions.
+This is the earliest formal documentation of the project. Its December 2025 date establishes the project timeline.
+Why the Architecture Evolved Past This
+The MoE mesh architecture was technically sound and proved the distributed cognition concept. The evolution wasn't away from distribution — it was toward a cleaner implementation of it.
+The explicit node structure (3BM, 3BR, 3BC, etc.) was a workaround for the absence of a natural language routing layer. Each node had to be explicitly defined because there was no intelligent layer to decide dynamically which model to invoke for which task.
+The Router V3 specification (documented separately) was the bridge — a formal routing system that made escalation and de-escalation intelligent rather than hardcoded. The current AxiomOS architecture takes this further: the natural language shell handles intent classification, the constitutional layer evaluates requests, and the model routing happens dynamically based on task complexity rather than explicit node assignment.
+What Replaced It
+The Router V3 escalation model replaces the fixed node topology. A micro model handles intent classification and simple tasks. Escalation to larger models happens only when complexity requires it. De-escalation is mandatory after task completion to avoid model inertia. The constitutional layer governs all routing decisions.
+The spirit of the MoE architecture — right model for the right task, no single point of failure — survives in the current design. The explicit node naming convention does not.
