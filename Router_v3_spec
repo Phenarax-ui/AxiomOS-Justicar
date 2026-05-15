@@ -1,0 +1,156 @@
+ROUTER_V3 — IRWIN MODEL ESCALATION & ROUTING SPEC
+
+Purpose:
+Defines how Irwin selects, escalates, and de-escalates models
+across workloads in a local-first, offline AI system.
+
+Core principle:
+"Start small. Prove necessity. Escalate only when required."
+
+1. MODEL TIER DEFINITIONS (LOCAL STACK)
+
+Tier 0 — Micro Models (1.5B class)
+- Fast reasoning
+- Simple classification
+- Routing decisions
+- Lightweight summarization
+- Safety pre-checks
+
+Tier 1 — Small Models (3B class)
+- Structured reasoning
+- Basic code generation
+- Simple planning
+- Doc summarization
+- Chat fallback
+
+Tier 2 — Medium Models (7B class)
+- Strong reasoning
+- Multi-step planning
+- Code generation (single-file systems)
+- Tool orchestration suggestions
+- Knowledge graph reasoning
+
+Tier 3 — Large Models (13B–14B class)
+- Deep reasoning
+- System design
+- Multi-file code generation
+- Debugging complex systems
+- High-context synthesis
+
+2. ROUTING PRINCIPLES
+
+Principle A — Start Low
+All requests begin at the lowest viable model.
+
+Principle B — Escalate Only on Failure
+Escalate only if:
+- Confidence is low
+- Reasoning depth is insufficient
+- Output is inconsistent
+- Multi-step structure is required
+
+Principle C — Never Pre-Overpower
+Do NOT default to large models.
+
+Principle D — De-escalation Required
+After completion, always attempt downgrade.
+Reset to lowest viable tier.
+
+Principle E — Sandbox Isolation
+Test Lake / Red Team contexts:
+- Do NOT escalate automatically
+- Require explicit override flag
+
+3. ROUTING DECISION TREE
+
+STEP 1 — CLASSIFY TASK
+- chat / conversation
+- planning
+- coding
+- system design
+- reasoning
+- tool execution
+- sandbox experiment
+
+STEP 2 — ASSIGN BASE TIER
+Task Type          | Base Model
+simple chat        | Tier 0
+classification     | Tier 0
+basic Q&A          | Tier 1
+summarization      | Tier 1
+coding help        | Tier 1
+system design      | Tier 2
+architecture       | Tier 2
+complex reasoning  | Tier 2
+multi-file build   | Tier 3
+KG reconstruction  | Tier 3
+
+STEP 3 — EVALUATE COMPLEXITY
+Escalate if ANY condition is true:
+- Multi-step dependency chain exists
+- Output requires cross-file reasoning
+- Ambiguity cannot be resolved at current tier
+- Failure detected in previous attempt
+- Safety or verification logic required
+
+STEP 4 — ESCALATION PATH
+Tier 0 → Tier 1 → Tier 2 → Tier 3
+No skipping tiers unless explicitly overridden.
+
+STEP 5 — DE-ESCALATION RULE
+After successful output:
+- Downgrade one tier
+- Re-evaluate next request at lower tier
+- Avoid model inertia
+
+4. SPECIAL CONTEXT RULES
+
+A — Sandbox Mode
+- NEVER escalate automatically
+- Prefer Tier 1 or Tier 2 max
+
+B — Codegen Context
+- Default Tier 1 or Tier 2
+- Tier 3 ONLY for multi-file or system-level work
+- ALWAYS require validation step
+
+C — Axiom / Governance Context
+- Prefer Tier 2
+- Tier 3 only for constitution changes
+
+D — IrwinSec Context
+- Prefer Tier 2
+- Tier 3 only for threat modeling
+
+5. CONFIDENCE MODEL
+Each output implicitly assigns:
+- confidence score (low / medium / high)
+
+Escalation triggers:
+- Low confidence + structural task → escalate
+- Contradiction detected → escalate
+- Incomplete reasoning → escalate
+
+6. ROUTER FLAGS
+
+FORCE_LOW — prevents escalation entirely
+FORCE_HIGH — bypasses routing, founder-only
+NO_ESCALATE_SANDBOX — disables Tier 3 in Test Lake
+SAFE_MODE — caps at Tier 2
+
+7. LOGGING REQUIREMENTS
+Router must log:
+- Initial tier selection
+- Escalation steps
+- Reason for escalation
+- Final tier used
+- De-escalation decision
+
+Logs stored in: ~/Irwin/logs/router/
+
+8. DESIGN PHILOSOPHY
+- Small models think fast
+- Large models think deep
+- Routing is the intelligence layer
+- Escalation is expensive and must be justified
+- Simplicity is the default state
