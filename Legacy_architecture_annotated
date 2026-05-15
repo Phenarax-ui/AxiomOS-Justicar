@@ -122,23 +122,7 @@ The file tree above is not what AxiomOS will look like. It is what AxiomOS had t
 
 
 
-Document 3: IrwinOS SSD Portable Boot Architecture (v1)
-What This Was
-The IrwinOS SSD boot architecture was designed to make the entire Irwin system portable and host-agnostic — a self-contained AI operating system that could boot from a single SSD on any machine, Mac, Linux, or Windows via VM. The goal was reproducibility and independence from any specific host machine configuration.
-Key innovations in this design:
-Three strict data planes (prod, test, quarantine) with no cross-contamination
-Dependency-ordered engine initialization
-Sandbox isolation enforced at the mount namespace level
-Model tier routing built into the boot sequence
-All configuration stored inside the system — no host OS path dependencies
-The boot sequence (SSD detection → OS init → bootstrap service → model router → engine initialization → user shell) established the pattern that the current AxiomOS boot architecture follows.
-Why the Architecture Evolved Past This
-The SSD portable architecture solved the wrong problem elegantly. Making a userspace application portable across host machines is a legitimate engineering challenge. But the deeper problem — that the constitutional governance layer existed only as markdown files that could be ignored by any sufficiently privileged process — wasn't addressed by portability.
-A constitutional OS that runs from an SSD but enforces its rules only at the application layer is still an application, not an OS. The governance is still a suggestion.
-The current architecture addresses this by moving the constitutional layer to the kernel itself. The result is an OS that is not just portable but structurally governed — the rules are enforced at the level where all computation occurs, not in a folder that boots alongside the system.
-What Replaced It
-The AxiomOS kernel architecture replaces the SSD portable boot design. The three data lake separation (prod/test/quarantine) maps directly to the current dual data lake architecture with hardware-keyed private lake. The engine initialization order maps to the six-component build sequence. The sandbox isolation moves from mount namespace to constitutional kernel enforcement.
-The boot philosophy — structured, ordered, verified — survives entirely in the current design.
+
 Document 4: Dream Mode Protocol (v1)
 What This Was
 Dream Mode was the constitutional protocol governing creative and speculative reasoning in the Irwin system. It recognized that an AI system needs the ability to reason creatively — through metaphor, analogy, world-building, and speculative exploration — without compromising its grounding in truth, its identity stability, or its ethical constraints.
