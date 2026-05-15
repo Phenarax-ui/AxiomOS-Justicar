@@ -15,4 +15,3 @@ Each one pointed toward the same destination: an operating system where the inte
 That destination is AxiomOS.
 The userspace versions had to exist. They proved the architecture was sound. Now the architecture moves to where it always belonged — the kernel.
 Axiom Technologies — AGPL-3.0 — github.com/Phenarax-ui
-Legacy documentation preserved to establish project timeline and architectural provenance. All specifications described herein represent prior development states. Current architecture is documented in the main repository.
