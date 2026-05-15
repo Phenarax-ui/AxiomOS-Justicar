@@ -1,0 +1,154 @@
+Justicar Router and Node Architecture
+Documentation Status
+This specification is reconstructed from a combination of sources:
+Verified source code — front_brain_v2.py and memory_fast_v1.py (reconstructed from photos of the running system, not exact copies)
+Behavioral descriptions — provided by the system architect from direct experience operating the system through multiple build cycles
+Inferred architecture — node behavior described generally where exact code is not available, clearly marked
+This system ran on consumer hardware. The architecture described here reflects real operational behavior, not theoretical design. Where reconstruction introduces uncertainty, this document says so explicitly.
+System Overview
+Justicar uses a pipeline architecture where a user message passes through a sequence of specialized model nodes, each producing structured output that the next node uses as context. A planner decides which nodes activate for each request. A face node delivers the final response.
+The pipeline is not a single large model. It is a coordinated mesh of smaller specialized models, each doing one thing well, passing structured artifacts to the next stage.
+The Planner
+Role
+The planner receives the user message and the tags produced by 3BM and decides the execution route for that request. It runs on Gemma — surface routing on the 2.2B model, complex routing decisions on the 9B model.
+Inputs
+User message (raw text)
+Tags JSON from 3BM (goals, constraints, classification)
+Output
+A JSON object containing:
+Json
+Routing Factors
+The planner makes routing decisions on two dimensions simultaneously:
+Content flags — what the request is about:
+Ethical questions → escalate toward judicial review (14BR)
+Constitutional decisions → escalate toward judicial review (14BR)
+Philosophical depth → escalate toward deep reasoning (8BR, 14BR)
+Knowledge graph queries → activate kg_query step
+Code requests → activate code path nodes
+Complexity flags — how difficult the request is:
+Multi-step dependency chains → escalate reasoning depth
+Cross-domain reasoning → escalate reasoning depth
+Ambiguous intent → escalate, or trigger clarification
+Simple greeting or surface query → stay at fast route
+Either content flag or complexity flag can trigger escalation independently. Both together guarantee the deep route.
+Default Route
+When no escalation flags fire, the planner defaults to the fast route:
+Code
+Deep Route
+When escalation flags fire:
+Code
+Node Specifications
+3BM — Fast Memory Tagger
+Model: Hermes-3-Llama-3.2-3B Q8_0
+Role: Session memory and intent classification
+Status: Verified from reconstructed source code
+What it does:
+Reads the user message and produces a small JSON object of tags, goals, and constraints. It does not reason. It does not recall prior sessions. It reads the current message and returns structured metadata that all downstream nodes use to make routing and reasoning decisions.
+Inference parameters (verified):
+Max tokens: 256
+Temperature: 0.4 (low — consistent, not creative)
+Context window: 2048 tokens
+Top-p: 0.95
+Input: Raw user message text
+Output: JSON object — tags, goals, constraints
+Activates: Always. Every request passes through 3BM first.
+Logging: Every run logged to ~/justicar/state/logs/memory/ with timestamp
+Example output structure:
+Json
+8BM — General Recall
+Model: 8B class (specific model reconstructed from architecture, not verified code)
+Role: Cross-session context retrieval
+Status: Behavioral description — architect's direct experience
+What it does:
+Retrieves relevant context from prior sessions when the current request requires history beyond the active conversation. Does not activate for every request — only when 3BM tags indicate cross-session context would improve the response.
+Activation condition: Request requires context beyond current session. For users with significant conversation history, this activates frequently. For new users with no history, it may not activate at all.
+Input: User message, 3BM tags JSON
+Output: Bundle markdown — relevant prior context assembled for downstream nodes
+Activates: Conditionally, based on planner decision and 3BM tag signals
+14BM — Architectural Memory
+Model: 14B class
+Role: Long-term architectural and constitutional memory
+Status: Behavioral description — architect's direct experience
+What it does:
+Holds the deep knowledge graph, constitutional framework, and long-term architectural context of the whole system. Slow to update — this is the persistent memory of who the system is and what it knows at the deepest level. Not activated for routine requests.
+Input: Complex cross-session context requiring deep architectural grounding
+Output: Deep context bundle for high-stakes reasoning chains
+3BR — Quick Reasoning
+Model: 3B class
+Role: Fast inference and lightweight reasoning
+Status: Behavioral description — architect's direct experience
+What it does:
+Handles requests that need simple logical inference, basic analysis, or straightforward responses. The first reasoning node in the pipeline. If it can resolve the request adequately, the pipeline does not escalate further.
+Input: User message, 3BM tags, 8BM bundle (if activated)
+Output: Quick markdown — 1-3 sentence to short paragraph response draft
+Activates: On fast route. Always activates when reasoning is needed.
+8BR — Structured Reasoning
+Model: 8B class
+Role: Multi-step analysis and structured reasoning
+Status: Behavioral description — architect's direct experience
+What it does:
+Handles requests that 3BR cannot resolve adequately — multi-step reasoning chains, structured analysis, complex explanations. Produces a more developed response than 3BR.
+Input: User message, 3BM tags, 8BM bundle, 3BR quick output
+Output: Deep markdown — 1 to 3 paragraphs, structured analysis format
+Activates: On deep route, when complexity flags fire
+14BR — Judicial Review
+Model: 14B class
+Role: Ethical evaluation and constitutional review
+Status: Behavioral description — architect's direct experience
+What it does:
+The judicial node. Evaluates whether a proposed response or action is constitutionally permissible and ethically sound. Activated specifically for ethical questions and constitutional decisions — not for general complexity. Produces long-form analysis that the face node uses to deliver a constitutionally grounded response.
+The artifact this node produces is called judicial_md in the pipeline — the name reflects its role as the constitutional review layer before final delivery.
+Input: Full context chain — message, tags, bundle, quick reasoning, deep reasoning
+Output: Judicial markdown — 3+ paragraphs, long-form constitutional analysis
+Activates: When content flags fire — ethical questions, constitutional decisions, high-stakes governance requests
+3BC, 8BC, 14BC — Code Nodes
+Models: 3B, 8B, 14B class respectively
+Role: Code explanation, generation, and system-level implementation
+Status: Behavioral description — architect's direct experience
+What they do:
+Three-tier code handling following the same escalation pattern as reasoning nodes.
+3BC — code explanation and simple script generation
+8BC — single-file system generation, moderate complexity
+14BC — multi-file architecture, system-level code generation
+Code generation at the 14BC level requires gate engine approval — a Y/N confirmation before execution. This was enforced by the gate engine in the running system.
+Gate requirement: 14BC and code_core steps require explicit user confirmation before proceeding. Auto-deny if gate engine cannot be reached.
+9BF — Orchestration Face
+Model: Gemma 9B
+Role: Final response synthesis and delivery
+Status: Behavioral description, confirmed by front_brain architecture
+What it does:
+The face of the system. Takes the full artifact chain produced by all activated nodes and synthesizes a coherent final response for the user. This is the node the user interacts with — all other nodes are invisible pipeline stages.
+Also serves as the complex routing model for the planner when surface-level classification by 2.2B is insufficient.
+Input: Full artifact chain — tags, bundle, quick, deep, judicial outputs
+Output: Final user-facing response
+Activates: Always. Every request ends at 9BF.
+The Gate Engine
+The gate engine enforces constitutional constraints on high-impact actions before they execute. It was a running component of the system, not a theoretical layer.
+Gate-Required Actions
+Long-term memory writes (LTM commits)
+Code generation at depth (code_deep, code_core)
+Any action flagged as high-risk by the planner
+Gate Decisions
+auto_approve — low risk, proceed
+warn — high impact detected, present Y/N to user, proceed only on Y
+auto_deny — constitutional violation or gate error, strip risky steps from route and proceed with safe subset
+Gate Behavior on Error
+If the gate engine cannot be reached, the decision defaults to auto_deny and risky steps are stripped. The system fails safe — it does less rather than proceeding without constitutional review.
+Artifact Passing
+Each node produces a named artifact that downstream nodes receive as input. The artifact chain accumulates as the pipeline executes:
+Code
+Nodes that don't activate don't produce artifacts. Downstream nodes handle missing artifacts gracefully through the fallback chain in front_brain.
+Logging
+Every node run was logged with:
+Timestamp
+Input received
+Raw model output
+Parsed structured output
+Model name and quantization
+Logs stored under ~/justicar/state/logs/ organized by node type.
+This logging architecture was constitutional by design — the system maintained an auditable record of every decision made, every artifact produced, and every gate check performed.
+Hardware Context
+This architecture ran on consumer hardware — a mini PC with modest GPU. The three-tier node structure (3B/8B/14B) was designed specifically so the system could route lightweight requests to smaller faster models and reserve larger models for requests that genuinely required them. This kept the system responsive on hardware that couldn't run large models for every interaction.
+The same principle informs the current AxiomOS design — right-sized model for the task, escalation only when necessary, constitutional enforcement at every step.
+Axiom Technologies — AGPL-3.0 — github.com/Phenarax-ui
+This document reconstructs the architecture of the Justicar system as it ran prior to hardware loss. It represents the operational baseline that the current AxiomOS kernel-level architecture builds upon.
