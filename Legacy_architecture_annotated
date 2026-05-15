@@ -1,0 +1,159 @@
+AxiomOS / Justicar 
+
+~/Irwin/
+│
+├── axiom/                 # Constitutional + governance layer
+│   ├── core.md
+│   ├── ethics.md
+│   ├── identity.md
+│   ├── rules.md
+│   └── versioning/
+│
+├── bin/                   # CLI entry points + system commands
+│   ├── qs
+│   ├── irwin
+│   ├── ia
+│   ├── idoc
+│   ├── isearch
+│   ├── ikg
+│   ├── teach
+│   └── utils/
+│
+├── core/                  # Core runtime logic (routing, bootstrap)
+│   ├── router/
+│   ├── runtime/
+│   ├── boot/
+│   └── config/
+│
+├── tools/                 # System tools (generated + maintained)
+│   ├── ikn.sh             # BROKEN / missing at time of hardware loss
+│   ├── ise.sh             # BROKEN / missing at time of hardware loss
+│   ├── codegen/
+│   └── helpers/
+│
+├── engines/               # Major system engines
+│   ├── doc_engine/        # idoc
+│   ├── index_engine/      # isearch backend
+│   ├── kg_engine/         # ikg — BROKEN, missing file at hardware loss
+│   │   └── engine/
+│   │       └── kg_engine.py   ❌ missing in live system at loss
+│   ├── planner/
+│   ├── academy/
+│   └── automation_engine/ # ia
+│
+├── docs/
+├── lessons/
+├── logs/
+├── index/
+│   ├── data/
+│   │   ├── fulltext_index.tsv
+│   │   └── kg/
+│   └── rebuild/
+│
+├── kg/                    # Knowledge graph — BROKEN STATE at hardware loss
+│   ├── nodes/
+│   ├── edges/
+│   └── engine/            # ❌ incomplete at time of loss
+│
+├── models/
+│   ├── 1.5b/
+│   ├── 3b/
+│   ├── 7b/
+│   ├── 13b/
+│   ├── 14b/
+│   └── routing/
+│
+├── ollama/
+├── sandbox/               # TEST LAKE
+│   ├── philosophy/
+│   ├── ethics/
+│   ├── psychology/
+│   ├── red_team/
+│   ├── blue_team/
+│   └── purple_team/
+│
+├── state/
+├── sources/
+├── teacher/
+├── scripts/
+├── build/
+├── venv/
+└── irwin-up               # Main bootstrap launcher
+
+— Legacy Architecture Documentation
+Why This Document Exists
+This document preserves the architectural history of the Justicar / AxiomOS project from its earliest documented form through the evolution to the current kernel-level design. It is kept publicly because the evolution matters — not just the destination.
+The current AxiomOS architecture is cleaner, more capable, and more structurally sound than what came before. That didn't happen by accident. It happened because each prior version was built, understood, and deliberately improved upon. The limitations of each iteration directly informed the design decisions that followed.
+This is not a record of failure. It is a record of a system being designed correctly — starting from what was possible, learning what was necessary, and building toward what was always the goal.
+The goal was always a constitutional kernel-level OS. The userspace implementations documented here were the proof-of-concept path to get there. They had to exist before the kernel architecture could be fully specified.
+Document 1: Irwin File Tree — Legacy Userspace Architecture
+Documented state: Early 2025. This represents the userspace proof of concept that informed the current kernel-level architecture.
+Code
+What This Was
+This file tree represents Irwin — the first full implementation of the Justicar architecture — running as a userspace application on a standard Linux system. Every folder is a discrete system component: the constitutional governance layer, the CLI tools, the model routing engines, the knowledge graph, the academy, the sandbox test environment.
+At its peak this system was running:
+A fully connected MoE agent mesh across 3B, 8B, and 14B models
+A knowledge graph with 496 nodes and over 5,000 edges
+Autonomous LoRA training loops running unattended
+A self-healing doctor script that scanned the bin and repaired broken paths
+A teach command and teach-bash command for interactive learning
+A meta-teacher generating its own training data
+Dual data lake separation (prod lake / test lake / quarantine)
+Hardware profiling tools
+A full CLI with irwin, ia, idoc, ikg, isearch, and teach commands
+Development was interrupted by hardware loss. The ❌ markers represent the state at the time of that loss — active development, not abandoned work.
+Why the Architecture Evolved Past This
+The userspace architecture worked. It proved the concepts. But it had a fundamental structural limitation that became clearer the more the system developed:
+Every tool was a workaround for the absence of a natural language layer.
+isearch existed because there was no other way to query the knowledge graph in plain English. The hardware profiler existed because there was no other way to express "what's wrong with my hardware." The self-healing script existed because there was no other way to tell the system to repair itself. Dozens of explicit CLI tools, each compensating for the same underlying gap — the system didn't understand intent, only commands.
+When the natural language shell was identified as the correct architectural solution, approximately 90% of these tools became redundant. The tools were symptoms of a missing layer. The natural language shell treats the cause.
+What Replaced It
+The current AxiomOS architecture reduces the tool sprawl to six core components:
+Constitutional Layer — the rules everything inherits
+Natural Language Shell — plain English replaces explicit command tools
+Dual Data Lake — public and private separation
+Agora — federated governance and deliberation
+Mastery Engine (Academy) — adaptive educational infrastructure
+Axiom Coin — contribution tracking
+The knowledge graph is queried through the natural language shell. The hardware profiler is replaced by a plain language conversation. The self-healing architecture is replaced by constitutional evaluation of system state. The teach command becomes the mastery engine. The constitutional layer moves from markdown files in /axiom/ to kernel-level enforcement.
+The file tree above is not what AxiomOS will look like. It is what AxiomOS had to look like before the kernel path was clear.
+
+
+
+
+
+Document 3: IrwinOS SSD Portable Boot Architecture (v1)
+What This Was
+The IrwinOS SSD boot architecture was designed to make the entire Irwin system portable and host-agnostic — a self-contained AI operating system that could boot from a single SSD on any machine, Mac, Linux, or Windows via VM. The goal was reproducibility and independence from any specific host machine configuration.
+Key innovations in this design:
+Three strict data planes (prod, test, quarantine) with no cross-contamination
+Dependency-ordered engine initialization
+Sandbox isolation enforced at the mount namespace level
+Model tier routing built into the boot sequence
+All configuration stored inside the system — no host OS path dependencies
+The boot sequence (SSD detection → OS init → bootstrap service → model router → engine initialization → user shell) established the pattern that the current AxiomOS boot architecture follows.
+Why the Architecture Evolved Past This
+The SSD portable architecture solved the wrong problem elegantly. Making a userspace application portable across host machines is a legitimate engineering challenge. But the deeper problem — that the constitutional governance layer existed only as markdown files that could be ignored by any sufficiently privileged process — wasn't addressed by portability.
+A constitutional OS that runs from an SSD but enforces its rules only at the application layer is still an application, not an OS. The governance is still a suggestion.
+The current architecture addresses this by moving the constitutional layer to the kernel itself. The result is an OS that is not just portable but structurally governed — the rules are enforced at the level where all computation occurs, not in a folder that boots alongside the system.
+What Replaced It
+The AxiomOS kernel architecture replaces the SSD portable boot design. The three data lake separation (prod/test/quarantine) maps directly to the current dual data lake architecture with hardware-keyed private lake. The engine initialization order maps to the six-component build sequence. The sandbox isolation moves from mount namespace to constitutional kernel enforcement.
+The boot philosophy — structured, ordered, verified — survives entirely in the current design.
+Document 4: Dream Mode Protocol (v1)
+What This Was
+Dream Mode was the constitutional protocol governing creative and speculative reasoning in the Irwin system. It recognized that an AI system needs the ability to reason creatively — through metaphor, analogy, world-building, and speculative exploration — without compromising its grounding in truth, its identity stability, or its ethical constraints.
+The protocol distinguished between factual reasoning mode (default) and dream mode (explicitly invoked), defined precise activation and exit conditions, established memory rules that prevented speculative content from being treated as fact, and required all dream mode output to be tagged as speculation.
+This was one of the earliest expressions of the constitutional principle that AI behavior should be governed by explicit, auditable rules rather than implicit training assumptions.
+Why the Architecture Evolved
+Dream Mode as a protocol remains valid. The concept — controlled creative reasoning within constitutional constraints — is directly relevant to the current AxiomOS design. The evolution is in implementation: Dream Mode was a behavioral protocol enforced through prompting. In AxiomOS it becomes a kernel-level reasoning stance with constitutional enforcement.
+The activation rules, exit conditions, and memory handling that Dream Mode established directly inform how the natural language shell distinguishes between factual execution requests and creative/speculative requests.
+What It Became
+Dream Mode's principles are embedded in the AxiomOS constitutional layer. The distinction between grounded reasoning and speculative exploration is a constitutional concern — the kernel evaluates the nature of a request before execution, and speculative or creative outputs are handled differently from factual or action-oriented ones. The memory rules (speculative content is never automatically pinned) translate directly to the append-only ledger's handling of unverified information.
+The Through Line
+Reading these four documents together, the evolution is clear:
+The MoE mesh architecture established distributed cognition as the right approach. The file tree showed what a full implementation looked like in userspace. The SSD boot architecture made it portable and structured. Dream Mode established that AI behavior needed explicit constitutional governance.
+Each one pointed toward the same destination: an operating system where the intelligence, the governance, and the ethics are structural — not layered on top, not enforced through policy, not dependent on any single process choosing to comply.
+That destination is AxiomOS.
+The userspace versions had to exist. They proved the architecture was sound. Now the architecture moves to where it always belonged — the kernel.
+Axiom Technologies — AGPL-3.0 — github.com/Phenarax-ui
+Legacy documentation preserved to establish project timeline and architectural provenance. All specifications described herein represent prior development states. Current architecture is documented in the main repository.
