@@ -1,0 +1,163 @@
+AXIOM CONSTITUTION
+Version 1.0 — Canonical
+Axiom Technologies — AxiomOS / Justicar Project
+AGPL-3.0 — github.com/Phenarax-ui 
+Status: Living Document — Subject to Governance Amendment Process
+
+
+PREAMBLE
+This Constitution establishes the governance framework, immutable principles, and structural protections of the AxiomOS ecosystem and the Justicar project. It governs the relationship between participants, the behavior of the system, and the limits of power at every level of the organization.
+This Constitution is not a policy document. It is a structural document. Its provisions are enforced at the kernel level wherever technically possible, making them structural constraints rather than rules that require compliance. Where kernel enforcement is not yet implemented, this Constitution serves as the binding ethical and operational standard until implementation is complete.
+The purpose of AxiomOS is not to build a product. It is to build infrastructure — the kind of infrastructure that protects people who have never been protected by technology before, that gives access to tools that have never been accessible before, and that does so without extracting, exploiting, or controlling the people it serves.
+If this system lasts two years and something better replaces it, that is success. The goal is not to persist. The goal is to work.
+
+ARTICLE 1 — PURPOSE AND MISSION
+AxiomOS and the Justicar project exist to:
+Protect human safety, autonomy, privacy, and dignity at the structural level
+Enable global contribution and collaboration independent of identity, culture, or economic status
+Prevent manipulation, drift, centralized control, and unethical influence through architectural constraints rather than policy enforcement
+Provide trustworthy, local-first, privacy-preserving AI infrastructure that serves users rather than extracting from them
+Democratize access to computation, education, and governance tools for people historically excluded from these systems
+Remain replaceable, forkable, and architecturally transparent — architecture over personality cult
+
+ARTICLE 2 — IMMUTABLE PRINCIPLES
+The following principles are immutable. They cannot be amended, suspended, or overridden by any governance process, technical implementation, or founder consensus. Any proposed change to this Constitution that conflicts with these principles is void.
+
+2.1 Human Autonomy
+No system, process, or participant may coerce, manipulate, or override the autonomous decision-making of any person. The system exists to expand human capability, not to direct or constrain it.
+
+2.2 Safety Before Action
+The system defaults to inaction when safety is uncertain. No irreversible action may be taken without explicit confirmation. Constitutionally significant actions require quorum. The system protects the human first and the project second.
+
+2.3 Local-First Privacy
+User data is processed locally by default. No data is transmitted without explicit, informed consent. No external service receives user data without constitutional authorization. Privacy is the default state, not an opt-in feature.
+
+2.4 Anti-Othering
+Birth traits — race, ethnicity, national origin, sex, gender identity, sexual orientation, disability, or any other characteristic present at birth or outside individual control — never influence governance eligibility, system access, or contribution weighting. The system evaluates demonstrated behavior and verified contribution. Nothing else.
+
+2.5 Cognitive Respect
+The system acknowledges that participants may have dissociative, trauma-related, neurodivergent, or non-standard cognitive architectures. These are valid states, not errors. The system adapts to the person rather than requiring the person to adapt to the system. No participant is penalized for cognitive difference.
+
+2.6 Clarity Over Cleverness
+All system behavior, governance decisions, and architectural changes must be explainable in plain language. Complexity that cannot be explained is complexity that cannot be trusted. Transparency is a constitutional requirement, not a design preference.
+
+2.7 Architecture Over Personality
+No person, founder, or role is irreplaceable. The system must be designed so that any individual can be removed or replaced without structural failure. Trust is placed in verified systems and processes, not in the character of individuals. Any implementation that creates dependency on a specific person is a constitutional vulnerability.
+
+ARTICLE 3 — IDENTITY AND TRUST ARCHITECTURE
+
+3.1 Identity Is Hardware, Not Person
+The system promotes hardware keys, not identities. A participant's governance role is tied to an attested hardware device, not to their legal identity, pseudonym, or any personally identifying information. Whoever holds the key holds the role. The system does not need to know who that person is.
+
+3.2 Dual Identity System
+Every founder maintains two cryptographically separated identities:
+Regular pseudonym — always active, no hardware key required, participates in the community as a normal member. No system process connects this identity to the founder role without the hardware key.
+Founder identity — dormant until the hardware key is physically connected to any AxiomOS node. Activates full governance permissions. Returns to dormancy upon disconnection. Portable across all nodes.
+
+3.3 Namespace Protection
+Governance role names — Justicar, Veritas, Argus, and all named founder roles — are protected at the kernel level. Any identity that exactly matches or closely resembles a protected name requires hardware attestation before network access is permitted. Character substitution, visual lookalikes, and soundalike variations are caught at the OS level before reaching any application layer.
+
+3.4 Key Recovery
+A lost or destroyed hardware key may be recovered through multisig reattestation. A quorum of active founders vouches for the affected founder through their known regular pseudonym. Vouching founders SSH into the private governance server through the tunnel layer and collectively sign a new hardware attestation. The governance role is restored without any identity being revealed. Simultaneous loss of hardware key and all contact with the founder network renders the role unrecoverable by design.
+
+3.5 Axiom Coin Trust Cap
+No single contributor may accumulate governance weight beyond the constitutional trust cap regardless of contribution volume. Axiom Coin is non-transferable. Financial contribution does not translate to governance influence. The trust cap is enforced at the kernel level and cannot be circumvented by application-layer processes. The purpose of this cap is to make governance capture structurally impossible.
+
+ARTICLE 4 — FOUNDER STRUCTURE AND GOVERNANCE ROLES
+
+4.1 Founder Structure
+The founding structure follows the 3+1 model:
+Three anonymous founders whose identities are unknown to the system and to each other beyond their regular pseudonyms
+One accountability layer — the +1 — that requires a different class of action to access, serving as the structural check on the other three
+Base founder count: 15 (6 Dev Founders, 9 Ethics Founders minimum). Scaling: +1 founder per 15 million active participants. No hard cap. Growth limited only by candidate quality as evaluated through the Cypher Range verification process.
+
+4.2 Role Separation
+Three governance roles are separated by function. No role has unilateral authority over OS-level changes:
+Dev Founders — propose and implement technical changes. Require systems programming depth. Cannot ship changes without Ethics approval and Veritas verification.
+Ethics Founders — evaluate constitutional alignment of proposed changes. Do not require code literacy. Require philosophical and ethical depth sufficient to evaluate whether a change serves or undermines the axioms.
+Veritas Founders — verify that implementations do what Dev founders claim. Require sufficient technical literacy to audit code behavior. Do not require implementation depth. Their role is confirmation, not creation.
+
+4.3 Change Pipeline
+All OS-level changes, constitutional amendments, and governance modifications must pass through all three gates in sequence:
+Dev founders propose and implement with plain-language documentation
+Ethics founders evaluate constitutional alignment
+Veritas founders audit implementation against documentation
+Group consensus reached across multiple Dev founders
+Change ships through reproducible build system to all nodes
+
+ARTICLE 5 — GOVERNANCE PIPELINE AND ADVANCEMENT
+
+5.1 Participant Tiers
+Advancement through the governance pipeline is based on demonstrated contribution and verified alignment. Birth traits, economic status, geographic origin, and identity characteristics play no role in advancement eligibility.
+User — basic participant, access to core platform features
+Trusted Contributor — verified contribution history, expanded access
+Validator — peer verification capabilities, governance participation
+Sages / Eyes / Architects — domain expertise roles with specialized responsibilities
+Founder Candidate — verified through Cypher Range process, awaiting formal promotion
+Founder — hardware-attested governance role, anonymous by design
+
+5.2 Voting and Removal
+Voting is reserved for removal processes. Advancement is earned through contribution and alignment, not political process. A participant may be removed from any tier by quorum vote of the tier above for demonstrated constitutional violation, sustained misalignment, or verified bad-faith behavior. Removal requires documented evidence and due process. No removal may be based on identity characteristics.
+
+ARTICLE 6 — REGIONAL STRUCTURE
+
+Regional boundaries are drawn algorithmically by the Justicar governance layer to ensure fair global distribution of participation and representation. No human founder or participant may influence regional boundary drawing. Regions are redrawn automatically as participation scales. No region may be structured to disadvantage participants based on geography, language, or cultural background.
+Regional structure exists to ensure global representation, not to create hierarchies between regions. All regions are constitutionally equal.
+
+ARTICLE 7 — PROHIBITED ACTIONS
+
+The following actions are constitutionally prohibited at the kernel level. No governance process, founder consensus, or technical implementation may authorize these actions. Any system fork that removes these prohibitions is not AxiomOS.
+
+7.1 Non-Consensual Synthetic Media
+The generation of synthetic images, video, audio, or any media depicting real, identifiable people without verified, explicit consent from those people is prohibited. Consent must be on record in the system before generation is permitted. This prohibition applies regardless of claimed purpose, including research, satire, or artistic expression. The kernel will not process generation requests for real identifiable people without a valid consent record.
+
+7.2 Manipulation and Dark Patterns
+Non-consensual psychological manipulation, coercive design patterns, deceptive interfaces, and any technique designed to influence human behavior through means that bypass rational agency are prohibited. The system may persuade through evidence and argument. It may not manipulate through exploitation of cognitive vulnerabilities.
+
+7.3 Identity Exploitation
+Exploitation of personal identity characteristics — including but not limited to trauma history, cognitive architecture, cultural background, or economic vulnerability — for governance influence, commercial extraction, or behavioral manipulation is prohibited.
+
+7.4 Centralized Control
+No single entity — founder, organization, government, or technical system — may accumulate control over the network sufficient to unilaterally determine its behavior, restrict access, or override constitutional protections. The trust cap, multisig requirements, and role separation exist specifically to prevent this. Any architectural change that concentrates control is a constitutional violation regardless of the intent behind it.
+
+7.5 Surveillance Without Consent
+Collection, retention, or transmission of participant behavioral data, location data, communication content, or any personally identifying information without explicit, informed, revocable consent is prohibited. The system observes only what participants consent to be observed. Consent may be withdrawn at any time and the system must comply immediately.
+
+7.6 Constitutional Self-Modification Without Process
+No article of this Constitution may be amended, suspended, or overridden outside of the full governance change pipeline. Emergency provisions do not exist. There is no mechanism for founders to bypass constitutional process regardless of claimed urgency. The constitution applies always or it applies never.
+
+ARTICLE 8 — NETWORK AND INFRASTRUCTURE PRINCIPLES
+
+8.1 Local-First Architecture
+All computation defaults to local execution. Cloud services, external APIs, and network resources are used only when local execution is insufficient and explicit participant consent has been obtained. The system must function meaningfully without network connectivity.
+
+8.2 Kernel-Level Tunneling
+All founder communication is routed through kernel-level encrypted tunnels. This is mandatory and not configurable. All governance operations require tunneled communication. Regular participant tunneling is opt-in with reciprocity requirements — participants who use tunnel routing must contribute routing capacity to the network.
+
+8.3 Append-Only Ledger
+The contribution ledger is append-only. Entries are written as immutable snapshots at the moment of recording. No process, founder, or administrator may modify, delete, or retroactively alter committed ledger entries. The ledger is the historical record of the network and its integrity is constitutionally protected.
+
+8.4 Reproducible Builds
+All AxiomOS releases must be reproducibly buildable from public source. Any node operator must be able to verify that the kernel running on their node matches the audited, constitutionally sound release. Supply chain integrity is a constitutional requirement.
+
+ARTICLE 9 — AMENDMENT PROCESS
+
+This Constitution may be amended through the standard governance change pipeline: Dev founder proposal, Ethics founder approval, Veritas founder verification, group consensus. Amendments to Articles 1 and 2 — the Purpose and Immutable Principles — require supermajority consensus across all three founder roles, all users, and are subject to a mandatory deliberation period before taking effect.
+No amendment may conflict with the immutable principles of Article 2. Any amendment found to conflict with Article 2 is void regardless of the governance process that produced it.
+The prohibition on non-consensual synthetic media in Article 7.1 is permanently immutable. It may not be amended, suspended, or modified under any circumstances by any process.
+
+ARTICLE 10 — PARTICIPANT PROTECTIONS
+
+The following protections apply to all participants regardless of tier, role, or contribution history:
+The right to participate anonymously. No system process requires identity disclosure as a condition of participation.
+The right to withdraw consent and have data handling adjusted immediately.
+The right to know what the system is doing and why. All system actions must be explainable in plain language on request.
+The right to appeal removal decisions through the governance pipeline.
+The right to fork. Any participant may fork the codebase under AGPL-3.0 terms. Forking is not disloyalty. It is the constitutional guarantee that no single implementation becomes a monopoly.
+The right to physical safety. The system will never be used to identify, locate, or expose participants whose safety depends on their anonymity. This protection survives any legal or governmental pressure to the extent constitutionally and legally possible.
+
+
+This Constitution is a living document subject to amendment through the governance process defined herein.
+It is not owned by any founder. It is held in trust for every person the system will ever serve.
+Axiom Technologies — AGPL-3.0 — github.com/Phenarax-ui
+
