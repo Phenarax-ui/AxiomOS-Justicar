@@ -28,10 +28,24 @@ CHAT_MODEL   = "gpt-oss:20b"       # axiom_chat: the conversational agent
 ROUTER_MODEL = "qwen3:14b"         # dispatcher: plain-language routing
 
 # --- path policy ------------------------------------------------------------
-PROJECT_ROOT   = "/home/phenarax"             # writes/exec confined under here
-READABLE_ROOTS = (                            # reads confined to these (default-deny)
-    "/home/phenarax/axiom",
-    "/home/phenarax/mastery",
-    "/home/phenarax/bounty",
-)
+# Worked out from whoever is running the code, so it works on any machine.
+# Override with environment variables, e.g.
+#   AXIOM_PROJECT_ROOT=~/axiom
+#   AXIOM_READABLE_ROOTS=~/axiom:~/notes      (colon-separated)
+import os as _os
+
+HOME     = _os.path.expanduser("~")
+CODE_DIR = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))  # folder holding core/
+
+def _path(p):
+    return _os.path.realpath(_os.path.expanduser(p))
+
+PROJECT_ROOT = _path(_os.environ.get("AXIOM_PROJECT_ROOT", HOME))   # writes/exec confined under here
+
+_roots = _os.environ.get("AXIOM_READABLE_ROOTS")
+READABLE_ROOTS = tuple(dict.fromkeys(                                # reads confined to these (default-deny)
+    _path(r) for r in (_roots.split(":") if _roots else
+                       (CODE_DIR, HOME + "/axiom", HOME + "/mastery", HOME + "/bounty"))
+    if r
+))
 BOUNTY_DB_PATH = "bounty.db"                   # scope data (programs, scope_items)

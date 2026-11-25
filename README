@@ -10,22 +10,31 @@ What works today
 
 A working governance stack, running locally on open models (via Ollama) — no cloud dependency, nothing leaves the machine unless an action is explicitly and constitutionally permitted to send it:
 
-Constitutional gate — every action an agent attempts is judged against the constitution before it runs. A deterministic rule layer hard-blocks known-dangerous operations; a model layer judges the ambiguous ones. It fails closed: if a decision can't be reached, the action is denied, not allowed.
-Tamper-evident ledger — every decision (allowed or blocked, with its reasoning) is written to a hash-chained, append-only audit log. Any edit, deletion, or reorder of past entries is detectable by verifying the chain.
+Constitutional gate — every action an agent attempts is judged against the constitution before it runs. A deterministic rule layer hard-blocks known-dangerous operations; a model layer judges the ambiguous ones. It fails closed: if a decision can't be reached, the action is denied, not allowed. Reads are confined to allowed folders, writes to the project, credential files (SSH keys, .env, etc.) are refused in both directions, and commands that upload local data are blocked. Its guarantees are frozen in a regression suite (core/gate_tests.py).
+Tamper-evident ledger — every decision (allowed or blocked, with its reasoning) is written to a hash-chained, append-only audit log. Any edit, deletion, or reorder of past entries is detectable by verifying the chain. Writers are serialized with a file lock, an anchor file plus a hash you keep off the machine catches a full rewrite or truncation, and a watchdog (core/ledger_watchdog.py) re-checks the chain on a timer.
 Persistent memory / knowledge graph — a local SQLite knowledge graph (entities + typed relations) with full-text recall, so the system accumulates and queries what it has learned across sessions instead of starting cold each time.
 Governed agentic loop — a natural-language agent that acts through tools, where every tool call is routed through the gate and logged. There is no unobserved action.
-Scope / authorization enforcement — actions against external targets are checked against an authoritative allow-list before execution; anything out of scope is refused at the gate, not trusted to the tool.
+Scope / authorization enforcement — actions against external targets (bug-bounty recon) are checked against the program's official scope before execution; anything out of scope, or whose scope can't be verified, is refused at the gate. The bounty module itself is optional and not included in this repo; without it, scoped actions are always refused.
+Mastery Engine (prototype) — an adaptive Python tutor: 33 concepts in three difficulty tiers, spaced repetition (Leitner boxes), model-written questions graded against a fixed ground-truth brief, and code challenges where pass/fail is decided by actually running your code, not by the model.
 Running it
 
-Requires Python 3 and Ollama with a local model pulled. The core modules are standalone and ship with self-contained demos:
+Requires Python 3.11+, Linux (or macOS), and Ollama with the models named in src/core/config.py pulled. Install the Python packages with:
 
-bash
-python3 axiom_gate.py      # watch the gate allow and deny sample actions
-python3 axiom_ledger.py    # build an audit chain and verify its integrity
-python3 memory.py          # store facts and relations, recall them, traverse the graph
-python3 axiom_agent.py     # a governed natural-language agent (every tool call gated + logged)
+pip install requests ddgs       # ddgs is optional; it enables web_search
+sudo apt install firejail       # sandbox for generated code (required for run_python / write_and_test)
 
-(Adjust filenames to match your tree.)
+Run everything from the src/ folder:
+
+cd src
+python3 -m core.gate_tests                  # the gate's regression suite (no model needed)
+python3 -m core.gate_tests --llm            # also exercise the live gate model
+python3 -m core.ledger_watchdog             # verify the ledger chain once
+python3 -m capabilities.axiom_chat          # the governed agent (every tool call gated + logged)
+python3 mastery/tutor.py                    # the Mastery Engine tutor
+
+Paths default to your home folder. To narrow them, set AXIOM_PROJECT_ROOT (where writes are allowed) and AXIOM_READABLE_ROOTS (colon-separated folders the agent may read). Your learner profile and practice code are saved next to the tutor and are git-ignored.
+
+The legacy/ folder holds the first standalone versions of the gate, ledger, memory and agent.
 
 The problem
 
@@ -46,7 +55,7 @@ Constitutional Layer	The rules everything inherits; enforcement at the boundary.
 Natural Language Shell	Plain English as the primary interface — describe what you want.	Working prototype
 Dual Data Lake	Separated public lake and test (sandbox) lake; the test lake is gated by a hardware key.	Specified
 Agora	Federated deliberation and governance; discovery over engagement.	Specified
-Mastery Engine	Adaptive education that serves the learner and is barred from surveilling them.	Specified
+Mastery Engine	Adaptive education that serves the learner and is barred from surveilling them.	Working prototype (app layer)
 Axiom Coin	Non-transferable contribution tracking; a trust cap that blocks governance capture by money.	Specified
 
 Designed to run over an 802.11ah (HaLow) mesh so it doesn't depend on centralized internet infrastructure. Detailed design notes live alongside this README (kernel architecture, extended architecture, mesh layer, constitution draft).

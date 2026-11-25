@@ -24,7 +24,7 @@ import time
 
 from curriculum import CONCEPTS
 
-PROFILE_PATH = "mastery_v3.json"      # new file - leaves your old profile untouched
+PROFILE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mastery_v3.json")  # your private profile (git-ignored)
 MAX_BOX = 5
 
 

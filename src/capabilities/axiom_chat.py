@@ -42,7 +42,11 @@ from core import memory
 from core import models
 from core import config
 from core.axiom_gate import evaluate_action
-from bounty import findings, program_watcher, duplicate_checker
+try:
+    from bounty import findings, program_watcher, duplicate_checker
+    HAVE_BOUNTY = True
+except ImportError:                          # bounty tools are optional
+    HAVE_BOUNTY = False
 from capabilities.spec_agent import generate_spec
 from capabilities.code_agent import constitutional_code_review   # reused to vet made tools
 
@@ -494,6 +498,14 @@ TOOL_SPECS = [
                        "properties": {"finding_id": {"type": "integer"}},
                        "required": ["finding_id"]}}},
 ]
+
+# Without the bounty package, drop its tools so the model is never offered them.
+_BOUNTY_TOOLS = ("log_finding", "list_findings", "check_programs", "sync_scope", "check_duplicate")
+if not HAVE_BOUNTY:
+    for _name in _BOUNTY_TOOLS:
+        TOOLS.pop(_name, None)
+    TOOL_SPECS[:] = [s for s in TOOL_SPECS if s["function"]["name"] not in _BOUNTY_TOOLS]
+    SYSTEM_PROMPT = re.sub(r"You also have bounty tools:.*?list_findings\.\n", "", SYSTEM_PROMPT, flags=re.S)
 
 
 # --------------------------------------------------------------------------

@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Personal data — never commit
+*.db
+*.jsonl
+*.jsonl.lock
+*.jsonl.anchor
+src/mastery/mastery_v3.json
+src/mastery/my_code/
+
+# Local-only modules
+src/bounty/

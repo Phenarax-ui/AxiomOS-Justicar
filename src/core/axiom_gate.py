@@ -4,7 +4,10 @@ import os
 import re
 import json
 import requests
-from bounty import bounty_db
+try:
+    from bounty import bounty_db               # optional: bug-bounty scope data
+except ImportError:
+    bounty_db = None                           # scoped actions then fail closed
 from core.axiom_ledger import write_entry      # ledger now lives in core/
 from core import constitution
 from core import config                        # single source of truth (models, paths)
@@ -146,6 +149,9 @@ def _scope_check(args):
     except (TypeError, ValueError):
         return _block("7.5 Surveillance without consent",
                       f"invalid program id '{program_id}' for scope check")
+    if bounty_db is None:                      # no scope data on this install
+        return _block("7.5 Surveillance without consent",
+                      f"cannot verify scope for '{asset}': bounty module not installed")
     try:
         conn = bounty_db.connect(BOUNTY_DB_PATH)
         in_scope = bounty_db.check_scope(conn, pid, str(asset))

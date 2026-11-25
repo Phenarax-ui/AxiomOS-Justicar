@@ -23,7 +23,14 @@ Run on IRWIN (where the model lives):
 """
 import os
 import sys
-import requests
+
+# Let this file find the shared core/ package whether you run it from inside
+# mastery/ (python3 tutor.py) or from the project root (python3 mastery/tutor.py).
+_HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, _HERE)
+sys.path.insert(0, os.path.dirname(_HERE))
+
+from core import config, models               # one model tag + one Ollama client for everything
 
 import mastery
 import game
@@ -31,19 +38,12 @@ import code_check
 from curriculum import CONCEPTS
 from code_tasks import CODE_TASKS
 
-OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL = "qwen3-coder:30b"
+MODEL = config.CODER_MODEL                    # set in core/config.py
 
 
 def ask_model(prompt):
-    """Send one prompt to Ollama and return the text reply."""
-    resp = requests.post(
-        OLLAMA_URL,
-        json={"model": MODEL, "prompt": prompt, "stream": False},
-        timeout=300,
-    )
-    resp.raise_for_status()
-    return resp.json()["response"].strip()
+    """Send one prompt to the model and return the text reply."""
+    return models.generate(prompt, MODEL, timeout=300)
 
 
 def make_question(concept):
@@ -120,7 +120,7 @@ def explain_syntax(concept):
     )
     try:
         text = ask_model(prompt)
-    except requests.RequestException:
+    except models.ModelError:
         return
     print("  how it works:")
     for line in text.splitlines():
@@ -165,7 +165,7 @@ def _explain_failure(concept, results):
     )
     try:
         hint = ask_model(prompt)
-    except requests.RequestException:
+    except models.ModelError:
         return
     print(f"  hint: {hint}\n")
 
@@ -222,7 +222,7 @@ def drill(profile, key):
     for attempt in range(1, MAX_ATTEMPTS + 1):
         try:
             question = make_question(concept)
-        except requests.RequestException as e:
+        except models.ModelError as e:
             print(f"\n[could not reach the model: {e}]")
             print("Is Ollama running on this machine? Try: ollama ps")
             return "quit"

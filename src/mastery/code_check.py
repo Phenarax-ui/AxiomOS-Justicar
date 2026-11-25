@@ -18,7 +18,7 @@ import sys
 import json
 import subprocess
 
-MY_CODE_DIR = "my_code"
+MY_CODE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "my_code")  # your answers (git-ignored)
 TIMEOUT = 10          # seconds; a runaway while-loop gets cut off here
 
 
