@@ -82,12 +82,12 @@ AxiomOS / Justicar
 
 — Legacy Architecture Documentation
 Why This Document Exists
-This document preserves the architectural history of the Justicar / AxiomOS project from its earliest documented form through the evolution to the current kernel-level design. It is kept publicly because the evolution matters — not just the destination.
+This document preserves the architectural history of the Justicar / AxiomOS project from its earliest documented form through the evolution to the current OS-level enforcement design. It is kept publicly because the evolution matters — not just the destination.
 The current AxiomOS architecture is cleaner, more capable, and more structurally sound than what came before. That didn't happen by accident. It happened because each prior version was built, understood, and deliberately improved upon. The limitations of each iteration directly informed the design decisions that followed.
 This is not a record of failure. It is a record of a system being designed correctly — starting from what was possible, learning what was necessary, and building toward what was always the goal.
-The goal was always a constitutional kernel-level OS. The userspace implementations documented here were the proof-of-concept path to get there. They had to exist before the kernel architecture could be fully specified.
+The goal was always a constitutional OS that enforces its own rules. The userspace implementations documented here were the proof-of-concept path to get there. They had to exist before the OS-level architecture could be fully specified.
 Document 1: Irwin File Tree — Legacy Userspace Architecture
-Documented state: Early 2025. This represents the userspace proof of concept that informed the current kernel-level architecture.
+Documented state: Early 2025. This represents the userspace proof of concept that informed the current OS-level architecture.
 Code
 What This Was
 This file tree represents Irwin — the first full implementation of the Justicar architecture — running as a userspace application on a standard Linux system. Every folder is a discrete system component: the constitutional governance layer, the CLI tools, the model routing engines, the knowledge graph, the academy, the sandbox test environment.
@@ -115,8 +115,8 @@ Dual Data Lake — public and private separation
 Agora — federated governance and deliberation
 Mastery Engine (Academy) — adaptive educational infrastructure
 Axiom Coin — contribution tracking
-The knowledge graph is queried through the natural language shell. The hardware profiler is replaced by a plain language conversation. The self-healing architecture is replaced by constitutional evaluation of system state. The teach command becomes the mastery engine. The constitutional layer moves from markdown files in /axiom/ to kernel-level enforcement.
-The file tree above is not what AxiomOS will look like. It is what AxiomOS had to look like before the kernel path was clear.
+The knowledge graph is queried through the natural language shell. The hardware profiler is replaced by a plain language conversation. The self-healing architecture is replaced by constitutional evaluation of system state. The teach command becomes the mastery engine. The constitutional layer moves from markdown files in /axiom/ to enforcement by the operating system itself.
+The file tree above is not what AxiomOS will look like. It is what AxiomOS had to look like before the OS-level path was clear.
 
 Legacy documentation preserved to establish project timeline and architectural provenance. All specifications described herein represent prior development states. Current architecture is documented in the main repository.
 

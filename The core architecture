@@ -10,7 +10,7 @@ The tools were symptoms. The natural language shell treats the cause.
 What Remains: Six Core Components
 When tool sprawl is eliminated the essential architecture becomes visible. Six components, each load-bearing, each dependent on the ones before it:
 1. Constitutional Layer
-The rules everything inherits. Implemented at the kernel level. Every system call, every network request, every generative output evaluated against the axioms before execution. Not policy — physics. The foundation on which everything else is built.
+The rules everything inherits. Enforced by the operating system in layers: the kernel enforces exact limits on every program (files, network, processes), and the constitutional gate judges the meaning of significant actions — commands, data leaving the node, generative output — against the axioms before execution. Not a policy any one application can opt out of. The foundation on which everything else is built.
 2. Natural Language Shell
 The human interface. Replaces explicit command tools with intent-based interaction. Y/N gates for irreversible actions. Clarifying questions for ambiguous intent. Constitutionally evaluated before execution. The component that makes computation accessible to anyone who can describe what they want.
 3. Knowledge Graph
@@ -22,7 +22,7 @@ The federated deliberation and governance platform. Requires the data lake to ex
 6. Academy (Mastery Engine)
 The adaptive educational infrastructure. Requires Agora to govern it and the data lake to store and distribute curriculum. Learns how each individual learns rather than teaching to a median. Escalates dynamically. Transitions between domains based on competency signals rather than fixed curricula. Draws from Khan Academy, peer-reviewed research, and community contributions. Epistemology trained into the model weights, not delivered through prompts.
 Axiom Coin
-The contribution tracking and governance weighting layer. Requires all five components to be functioning before contribution has anything to measure or reward. Non-transferable. Trust-capped at the kernel level to prevent governance capture. Financial contribution does not translate to governance influence.
+The contribution tracking and governance weighting layer. Requires all five components to be functioning before contribution has anything to measure or reward. Non-transferable. Trust-capped to prevent governance capture, with records kept through the gate and ledger on attested nodes. (Proving that each identity is a distinct person remains an open research problem.) Financial contribution does not translate to governance influence.
 What the Natural Language Shell Eliminates
 The following tools from the prior implementation become redundant once the natural language shell exists:
 Dedicated search engine and query wrapper — natural language queries the knowledge graph directly

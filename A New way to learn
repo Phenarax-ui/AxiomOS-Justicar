@@ -13,7 +13,7 @@ A Note on Teachers
 Teachers are public servants and, for many people, the first adult outside their family who believed in them. The failure described above is not their failure. They are asked to do something structurally impossible — be thirty different educators simultaneously, at thirty different paces, for thirty different learning styles — with inadequate tools and inadequate support.
 The Mastery Engine is not a replacement for teachers. It is the tool teachers have never had — one that handles the adaptive individualization that no single human can provide at scale, freeing teachers to do what humans do better than any system: recognize the whole person, provide genuine encouragement, and build the kind of trust that makes learning possible.
 What the Mastery Engine Is
-The Mastery Engine is an adaptive educational system built into AxiomOS as a kernel service. It builds a detailed understanding of how each individual learner thinks, where their knowledge currently sits, and what kind of explanation will most effectively move them forward.
+The Mastery Engine is an adaptive educational system built into AxiomOS as a system service. It builds a detailed understanding of how each individual learner thinks, where their knowledge currently sits, and what kind of explanation will most effectively move them forward.
 It does not teach to a median. It does not move at a fixed pace. It does not repeat the same explanation when a learner is confused — it finds a different angle. It does not advance until mastery is demonstrated. It does not slow down once mastery is clear.
 Every learner gets a system that learns how they learn. That is the one-on-one attention that has always existed behind a price barrier. The Mastery Engine makes it available to anyone running AxiomOS.
 How It Works
@@ -36,10 +36,10 @@ Any domain where structured knowledge can be broken into learnable components an
 Privacy by Architecture
 The learner profile is personal data of the most sensitive kind — a detailed map of how someone thinks, where they struggle, and what they know. In most educational technology this data is the product. It is collected, stored, analyzed, and sold.
 In AxiomOS the learner profile is governed by the same constitutional constraints as everything else. It lives locally on the learner's node. It cannot be transmitted without explicit, informed consent. It cannot be accessed by any external service without constitutional authorization. The system that teaches you cannot surveil you — not because of a privacy policy that can be updated, but because the prohibition is structural.
-The Mastery Engine serves the learner. That is not a design preference. It is a constitutional requirement enforced at the kernel level.
+The Mastery Engine serves the learner. That is not a design preference. It is a constitutional requirement, enforced by the kernel: the learner profile is readable only by the engine and the learner, and the engine has no network access unless the learner grants it.
 Current Status
 The Mastery Engine architecture is fully specified. A learner profile format, escalation logic, and teaching methodology have been developed and documented through extensive iterative design. A proof of concept implementation is the primary Phase 1 deliverable — the first working software artifact of the AxiomOS project.
-The proof of concept will run at the application layer demonstrating the adaptive teaching loop, learner profile development, and escalation logic. Full integration as a kernel service is a Phase 2 milestone.
+The proof of concept will run at the application layer demonstrating the adaptive teaching loop, learner profile development, and escalation logic. Full integration as a built-in system service, with kernel-enforced isolation of learner data, is a Phase 2 milestone.
 
 
 Desire determines who learns. Environment determines how fast.

@@ -10,7 +10,7 @@ This is not a natural law. It is a historical accident. Computers speak in comma
 The Solution
 The AxiomOS Natural Language Shell makes plain English the primary interface to the operating system.
 Instead of learning command syntax, you describe what you want. The system understands the intent, asks clarifying questions when needed, confirms before taking any irreversible action, and executes. The result is explained in plain language.
-This is not a voice assistant layered on top of a traditional operating system. It is the primary interface to the OS itself — implemented at the kernel level so that it governs all system interactions with the same constitutional constraints that govern everything else in AxiomOS.
+This is not a voice assistant layered on top of a traditional operating system. It is the primary interface to the OS itself — the default way people use an AxiomOS machine, and every action it takes passes through the same constitutional gate and kernel-enforced limits that govern everything else in AxiomOS.
 What This Looks Like in Practice
 A retired fisherman wants to build an app to track his boat maintenance schedule. He has never written a line of code. With the Natural Language Shell he describes what he wants:
 “Make me something to track when I last serviced my engine, when I replaced the oil, and when things are due next.”
@@ -20,7 +20,7 @@ Why This Is Different from Existing Tools
 Natural language interfaces to computers already exist. Siri, Alexa, Copilot, ChatGPT — all of them accept plain English input. They are all fundamentally different from the AxiomOS Natural Language Shell for one reason:
 They are applications running on top of an operating system. The Natural Language Shell is the operating system.
 An application-layer natural language tool can be bypassed, disabled, or removed. It has no special authority over the system it runs on. It is subject to the same vulnerabilities as any other software.
-The AxiomOS Natural Language Shell is implemented at the kernel level. It is the primary interface through which all user intent reaches the operating system. It cannot be bypassed because bypassing it would require operating below kernel space — which no application can do.
+The AxiomOS Natural Language Shell is the primary interface through which user intent reaches the operating system, and it carries the system's authority. Every action it takes is checked by the constitutional gate before it runs, and the tools it uses run inside kernel-enforced limits on files, network access, and processes. Another program on the machine gets those same limits — it cannot do more by avoiding the shell.
 This also means the constitutional protections that govern everything in AxiomOS apply to every interaction through the shell. The system that understands your intent is the same system that ensures your intent is executed safely, privately, and within the constitutional constraints that protect you.
 Who This Is For
 The Natural Language Shell is designed for everyone who has ever been told that computers are not for them.
@@ -31,8 +31,8 @@ Anyone whose cognitive style or disability has made traditional interfaces hosti
 Experienced developers who want to work faster without sacrificing control
 The Natural Language Shell does not replace technical depth for those who want it. It removes the requirement for technical depth as the price of admission to computation.
 Current Status
-The Natural Language Shell is a core component of the AxiomOS architecture currently in the research and design phase. The architectural specification is complete. Implementation requires the kernel development work that is the primary long-term focus of the Axiom Technologies team.
-Proof of concept demonstrations at the application layer — showing the interaction model and intent resolution approach — are planned for Phase 1 development. Full kernel-level implementation is a Phase 2 and Phase 3 milestone.
+The Natural Language Shell is a core component of the AxiomOS architecture currently in the research and design phase. The architectural specification is complete. A working prototype already exists: a governed agent in which every tool call passes the constitutional gate and is written to the ledger.
+Proof of concept demonstrations at the application layer — showing the interaction model and intent resolution approach — are planned for Phase 1 development. Integration as the default interface of the AxiomOS system, running inside kernel-enforced limits, is a Phase 2 and Phase 3 milestone.
 
 
 The intent became action through a conversation.

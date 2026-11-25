@@ -7,7 +7,7 @@ Status: Living Document — Subject to Governance Amendment Process
 
 PREAMBLE
 This Constitution establishes the governance framework, immutable principles, and structural protections of the AxiomOS ecosystem and the Justicar project. It governs the relationship between participants, the behavior of the system, and the limits of power at every level of the organization.
-This Constitution is not a policy document. It is a structural document. Its provisions are enforced at the kernel level wherever technically possible, making them structural constraints rather than rules that require compliance. Where kernel enforcement is not yet implemented, this Constitution serves as the binding ethical and operational standard until implementation is complete.
+This Constitution is not a policy document. It is a structural document. Its provisions are enforced by the operating system wherever technically possible — exact limits by the kernel, judgments of meaning by the constitutional gate, and integrity by attestation and the ledger — making them structural constraints rather than rules that require compliance. Where enforcement is not yet implemented or a provision cannot be enforced by software, this Constitution serves as the binding ethical and operational standard until implementation is complete.
 The purpose of AxiomOS is not to build a product. It is to build infrastructure — the kind of infrastructure that protects people who have never been protected by technology before, that gives access to tools that have never been accessible before, and that does so without extracting, exploiting, or controlling the people it serves.
 If this system lasts two years and something better replaces it, that is success. The goal is not to persist. The goal is to work.
 
@@ -55,13 +55,13 @@ Regular pseudonym — always active, no hardware key required, participates in t
 Founder identity — dormant until the hardware key is physically connected to any AxiomOS node. Activates full governance permissions. Returns to dormancy upon disconnection. Portable across all nodes.
 
 3.3 Namespace Protection
-Governance role names — Justicar, Veritas, Argus, and all named founder roles — are protected at the kernel level. Any identity that exactly matches or closely resembles a protected name requires hardware attestation before network access is permitted. Character substitution, visual lookalikes, and soundalike variations are caught at the OS level before reaching any application layer.
+Governance role names — Justicar, Veritas, Argus, and all named founder roles — are protected by the identity registry. Any identity that exactly matches or closely resembles a protected name requires hardware attestation before network access is permitted. Character substitution, visual lookalikes, and soundalike variations are caught by the registry before the name is accepted.
 
 3.4 Key Recovery
 A lost or destroyed hardware key may be recovered through multisig reattestation. A quorum of active founders vouches for the affected founder through their known regular pseudonym. Vouching founders connect to one another through the tunnel layer from their own nodes and collectively sign a new hardware attestation with a multisig. No central server is involved. The governance role is restored without any identity being revealed. Simultaneous loss of hardware key and all contact with the founder network renders the role unrecoverable by design.
 
 3.5 Axiom Coin Trust Cap
-No single contributor may accumulate governance weight beyond the constitutional trust cap regardless of contribution volume. Axiom Coin is non-transferable. Financial contribution does not translate to governance influence. The trust cap is enforced at the kernel level and cannot be circumvented by application-layer processes. The purpose of this cap is to make governance capture structurally impossible.
+No single contributor may accumulate governance weight beyond the constitutional trust cap regardless of contribution volume. Axiom Coin is non-transferable. Financial contribution does not translate to governance influence. The trust cap is enforced through the constitutional gate and the ledger on attested nodes. The purpose of this cap is to make governance capture structurally impossible; doing so fully also requires proving that each identity is a distinct person, which remains an open research problem.
 
 ARTICLE 4 — FOUNDER STRUCTURE AND GOVERNANCE ROLES
 
@@ -109,10 +109,10 @@ Regional structure exists to ensure global representation, not to create hierarc
 
 ARTICLE 7 — PROHIBITED ACTIONS
 
-The following actions are constitutionally prohibited at the kernel level. No governance process, founder consensus, or technical implementation may authorize these actions. Any system fork that removes these prohibitions is not AxiomOS.
+The following actions are constitutionally prohibited and are enforced by the operating system wherever technically possible. No governance process, founder consensus, or technical implementation may authorize these actions. Any system fork that removes these prohibitions is not AxiomOS.
 
 7.1 Non-Consensual Synthetic Media
-The generation of synthetic images, video, audio, or any media depicting real, identifiable people without verified, explicit consent from those people is prohibited. Consent must be on record in the system before generation is permitted. Consent is given by the depicted person themselves, using their own hardware key or pseudonym; the consent record does not store or require their legal identity (Article 10). This prohibition applies regardless of claimed purpose, including research, satire, or artistic expression. The kernel will not process generation requests for real identifiable people without a valid consent record.
+The generation of synthetic images, video, audio, or any media depicting real, identifiable people without verified, explicit consent from those people is prohibited. Consent must be on record in the system before generation is permitted. Consent is given by the depicted person themselves, using their own hardware key or pseudonym; the consent record does not store or require their legal identity (Article 10). This prohibition applies regardless of claimed purpose, including research, satire, or artistic expression. The constitutional gate will refuse generation requests for real identifiable people without a valid consent record.
 
 7.2 Manipulation and Dark Patterns
 Non-consensual psychological manipulation, coercive design patterns, deceptive interfaces, and any technique designed to influence human behavior through means that bypass rational agency are prohibited. The system may persuade through evidence and argument. It may not manipulate through exploitation of cognitive vulnerabilities.
@@ -135,7 +135,7 @@ ARTICLE 8 — NETWORK AND INFRASTRUCTURE PRINCIPLES
 All computation defaults to local execution. Cloud services, external APIs, and network resources are used only when local execution is insufficient and explicit participant consent has been obtained. The system must function meaningfully without network connectivity.
 
 8.2 Kernel-Level Tunneling
-All founder communication is routed through kernel-level encrypted tunnels. This is mandatory and not configurable. All governance operations require tunneled communication. Regular participant tunneling is opt-in with reciprocity requirements — participants who use tunnel routing must contribute routing capacity to the network.
+All founder communication is routed through kernel encrypted tunnels (WireGuard), with kernel firewall rules blocking any other path. This is mandatory and not configurable. All governance operations require tunneled communication. Regular participant tunneling is opt-in with reciprocity requirements — participants who use tunnel routing must contribute routing capacity to the network.
 
 8.3 Append-Only Ledger
 The contribution ledger is append-only. Entries are written as immutable snapshots at the moment of recording. No process, founder, or administrator may modify, delete, or retroactively alter committed ledger entries. The ledger is the historical record of the network and its integrity is constitutionally protected.

@@ -33,9 +33,9 @@ Current AI infrastructure is centralized, extractive, and ungovernable by the pe
 
 AxiomOS addresses these at the architectural level — not with better promises, but with structural constraints that can't be quietly removed.
 
-Why kernel-level
+Why OS-level
 
-Application-layer governance is a bouncer outside a club: anyone who doesn't want to follow the rules uses a different door. Kernel-level governance is the building itself — there is no other door. Every process crosses the kernel boundary to do anything meaningful, so enforcing the constitution at that chokepoint means no application can route around it. Not for complexity — for inescapability.
+Application-layer governance is a bouncer outside a club: anyone who doesn't want to follow the rules uses a different door. AxiomOS puts enforcement in the operating system, in layers: the kernel enforces exact limits on every program (files, network, processes); the constitutional gate judges the meaning of significant actions and fails closed; attestation lets the network detect any node that has removed the constitution; and a signed, witnessed ledger makes rewriting history detectable. The owner of a machine can always modify it — the point is that no application can route around the rules, and no node can drop them without the network noticing. See "Why the kernel" for what each layer does and does not guarantee.
 
 The architecture
 

@@ -151,4 +151,4 @@ Hardware Context
 This architecture ran on consumer hardware — a mini PC with modest GPU. The three-tier node structure (3B/8B/14B) was designed specifically so the system could route lightweight requests to smaller faster models and reserve larger models for requests that genuinely required them. This kept the system responsive on hardware that couldn't run large models for every interaction.
 The same principle informs the current AxiomOS design — right-sized model for the task, escalation only when necessary, constitutional enforcement at every step.
 Axiom Technologies — AGPL-3.0 — github.com/Phenarax-ui
-This document reconstructs the architecture of the Justicar system as it ran prior to hardware loss. It represents the operational baseline that the current AxiomOS kernel-level architecture builds upon.
+This document reconstructs the architecture of the Justicar system as it ran prior to hardware loss. It represents the operational baseline that the current AxiomOS OS-level architecture builds upon.
