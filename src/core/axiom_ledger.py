@@ -7,7 +7,8 @@ import fcntl
 # Anchor paths to THIS file's own folder so the ledger finds its data no matter
 # which directory you run from (you now run from the project root).
 _HERE = os.path.dirname(os.path.abspath(__file__))
-LEDGER_FILE = os.path.join(_HERE, "axiom_ledger.jsonl")
+# AXIOM_LEDGER_DIR lets an install keep the ledger outside a read-only code folder.
+LEDGER_FILE = os.path.join(os.environ.get("AXIOM_LEDGER_DIR", _HERE), "axiom_ledger.jsonl")
 LOCK_FILE   = LEDGER_FILE + ".lock"      # serializes concurrent writers
 ANCHOR_FILE = LEDGER_FILE + ".anchor"    # known-good (count, head) reference
 GENESIS = "GENESIS"
@@ -108,7 +109,7 @@ def verify_chain(use_anchor=True):
     # 3. Anchor: compare against the known-good reference, if one is set.
     if use_anchor:
         anchor = read_anchor()
-        if anchor is not None and anchor[0] is not None:
+        if anchor is not None and anchor[0]:          # count 0 = empty ledger, nothing to pin
             a_count, a_head = anchor
             if len(lines) < a_count:
                 return (f"CHAIN BROKEN: {len(lines)} entries but anchor expects "

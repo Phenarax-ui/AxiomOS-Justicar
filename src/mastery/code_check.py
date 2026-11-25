@@ -18,7 +18,7 @@ import sys
 import json
 import subprocess
 
-MY_CODE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "my_code")  # your answers (git-ignored)
+MY_CODE_DIR = os.path.join(os.environ.get("AXIOM_MASTERY_DIR", os.path.dirname(os.path.abspath(__file__))), "my_code")  # your answers (git-ignored)
 TIMEOUT = 10          # seconds; a runaway while-loop gets cut off here
 
 

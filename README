@@ -34,6 +34,17 @@ python3 mastery/tutor.py                    # the Mastery Engine tutor
 
 Paths default to your home folder. To narrow them, set AXIOM_PROJECT_ROOT (where writes are allowed) and AXIOM_READABLE_ROOTS (colon-separated folders the agent may read). Your learner profile and practice code are saved next to the tutor and are git-ignored.
 
+Installing AxiomOS on a machine or VM
+
+On a fresh Ubuntu or Debian install (test it in a VM first):
+
+sudo apt install -y git
+git clone https://github.com/Phenarax-ui/AxiomOS-Justicar.git
+cd AxiomOS-Justicar
+sudo ./deploy/install.sh
+
+This creates an 'axiom' user whose login shell is the governed AI shell, installs the code read-only under /opt/axiomos (so the AI cannot edit its own gate or constitution), keeps the ledger in /var/lib/axiomos with a root-owned anchor, and checks the ledger every minute. If Ollama runs on another machine (for example the VM's host), pass its address: sudo ./deploy/install.sh http://192.168.122.1:11434
+
 The legacy/ folder holds the first standalone versions of the gate, ledger, memory and agent.
 
 The problem

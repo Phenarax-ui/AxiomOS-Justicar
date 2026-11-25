@@ -24,7 +24,8 @@ import time
 
 from curriculum import CONCEPTS
 
-PROFILE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mastery_v3.json")  # your private profile (git-ignored)
+DATA_DIR = os.environ.get("AXIOM_MASTERY_DIR", os.path.dirname(os.path.abspath(__file__)))
+PROFILE_PATH = os.path.join(DATA_DIR, "mastery_v3.json")  # your private profile (git-ignored)
 MAX_BOX = 5
 
 

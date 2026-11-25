@@ -18,7 +18,8 @@ NOT centralized here, on purpose:
 """
 
 # --- Ollama endpoint --------------------------------------------------------
-OLLAMA_HOST = "http://localhost:11434"
+import os as _os
+OLLAMA_HOST = _os.environ.get("AXIOM_OLLAMA_HOST", "http://localhost:11434")  # e.g. a VM uses the host's Ollama
 OLLAMA_CHAT = OLLAMA_HOST + "/api/chat"
 
 # --- model tags (keep these matching your `ollama list`) --------------------
