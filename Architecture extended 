@@ -73,7 +73,7 @@ Key Recovery: Multisig Reattestation
 Hardware keys can be lost or destroyed. The recovery mechanism uses the social trust layer that already exists between founders without requiring identity revelation:
 The affected founder contacts other founders through their regular pseudonyms — the identities the founders know each other by
 A quorum of active founders vouches for the lost key holder based on established pseudonym identity and demonstrated behavior over time
-Founders SSH into the private Cypher Range server through the tunnel layer
+Vouching founders connect to one another through the tunnel layer from their own nodes — no central server is involved
 Multisig signs a new hardware attestation for a replacement key of the affected founder’s choice
 The governance role is restored without any identity being revealed
 Simultaneous loss of the hardware key and all contact with the founder network renders the role unrecoverable by design. A founder so thoroughly compromised that both vectors are gone should not have their governance role restored automatically. The role remains dormant until the situation is resolved through whatever human means are available.
@@ -90,9 +90,10 @@ Ethics founders evaluate constitutional alignment — does this change serve the
 Veritas founders audit the implementation — does the code actually do what Dev founders documented?
 Group consensus reached — multiple Dev founders must agree, not just one
 Change ships to all nodes through the reproducible build system
+Fixes for critical security vulnerabilities follow the same pipeline on a shortened timeline. No gate is skipped, and the fast track cannot change the constitution or governance rules.
 Why Role Separation Matters
 A compromised or mistaken Dev founder cannot ship a bad change unilaterally — Ethics and Veritas gates remain. A malicious Ethics founder cannot approve constitutionally unsound changes alone — Veritas will not verify code that doesn’t match the documented behavior. A compromised Veritas founder cannot approve code they haven’t actually audited — the group consensus requirement means others will catch the discrepancy.
-No role is subordinate to another. Each role is a gate that the others cannot bypass. The system’s integrity depends on all three functioning correctly and independently. This is the 3+1 governance structure applied to OS development itself — the system that governs the governed.
+No role is subordinate to another. Each role is a gate that the others cannot bypass. The system’s integrity depends on all three functioning correctly and independently. Argus, the +1 accountability layer, does not propose, approve, or verify changes; it holds the three roles to the constitution. This is the 3+1 governance structure applied to OS development itself — the system that governs the governed.
 Summary: Four Systems, One Principle
 The natural language shell, kernel-level tunneling, dual identity system, and role-separated governance are architecturally distinct but philosophically unified. Each one applies the same principle:
 Security, trust, accessibility, and accountability are most robust when they are structural rather than policy-based.

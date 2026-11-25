@@ -44,7 +44,7 @@ Six components, in dependency order:
 Component	What it does	Status
 Constitutional Layer	The rules everything inherits; enforcement at the boundary.	Implemented
 Natural Language Shell	Plain English as the primary interface — describe what you want.	Working prototype
-Dual Data Lake	Separated public/private data; private lake gated by a hardware key.	Specified
+Dual Data Lake	Separated public lake and test (sandbox) lake; the test lake is gated by a hardware key.	Specified
 Agora	Federated deliberation and governance; discovery over engagement.	Specified
 Mastery Engine	Adaptive education that serves the learner and is barred from surveilling them.	Specified
 Axiom Coin	Non-transferable contribution tracking; a trust cap that blocks governance capture by money.	Specified
@@ -68,7 +68,6 @@ Dual-licensed:
 AGPL-3.0 for open community use.
 Commercial license for enterprise/SaaS deployment, with revenue share back to the commons.
 
-During the current pre-release period the architecture is held all-rights-reserved while the formal licensing is structured. The intent is openness; the final licensing will reflect that.
 
 Contact
 Mastodon: @phenarax_ui

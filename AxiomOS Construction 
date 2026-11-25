@@ -58,7 +58,7 @@ Founder identity — dormant until the hardware key is physically connected to a
 Governance role names — Justicar, Veritas, Argus, and all named founder roles — are protected at the kernel level. Any identity that exactly matches or closely resembles a protected name requires hardware attestation before network access is permitted. Character substitution, visual lookalikes, and soundalike variations are caught at the OS level before reaching any application layer.
 
 3.4 Key Recovery
-A lost or destroyed hardware key may be recovered through multisig reattestation. A quorum of active founders vouches for the affected founder through their known regular pseudonym. Vouching founders SSH into the private governance server through the tunnel layer and collectively sign a new hardware attestation. The governance role is restored without any identity being revealed. Simultaneous loss of hardware key and all contact with the founder network renders the role unrecoverable by design.
+A lost or destroyed hardware key may be recovered through multisig reattestation. A quorum of active founders vouches for the affected founder through their known regular pseudonym. Vouching founders connect to one another through the tunnel layer from their own nodes and collectively sign a new hardware attestation with a multisig. No central server is involved. The governance role is restored without any identity being revealed. Simultaneous loss of hardware key and all contact with the founder network renders the role unrecoverable by design.
 
 3.5 Axiom Coin Trust Cap
 No single contributor may accumulate governance weight beyond the constitutional trust cap regardless of contribution volume. Axiom Coin is non-transferable. Financial contribution does not translate to governance influence. The trust cap is enforced at the kernel level and cannot be circumvented by application-layer processes. The purpose of this cap is to make governance capture structurally impossible.
@@ -67,9 +67,9 @@ ARTICLE 4 — FOUNDER STRUCTURE AND GOVERNANCE ROLES
 
 4.1 Founder Structure
 The founding structure follows the 3+1 model:
-Three anonymous founders whose identities are unknown to the system and to each other beyond their regular pseudonyms
-One accountability layer — the +1 — that requires a different class of action to access, serving as the structural check on the other three
-Base founder count: 15 (6 Dev Founders, 9 Ethics Founders minimum). Scaling: +1 founder per 15 million active participants. No hard cap. Growth limited only by candidate quality as evaluated through the Cypher Range verification process.
+Three founder roles — Dev, Ethics, and Veritas (defined in 4.2). All founders are anonymous; their identities are unknown to the system and to each other beyond their regular pseudonyms.
+One accountability layer — the +1, Argus — that requires a different class of action to access, serving as the structural check on the other three roles. Argus cannot propose, approve, or verify changes; it holds the other three roles to the Constitution.
+Base founder count: 15 Dev and Ethics Founders (6 Dev Founders, 9 Ethics Founders minimum), plus Veritas Founders (minimum number to be set) and the Argus accountability layer. Scaling: +1 founder per 15 million active participants. No hard cap. Growth limited only by candidate quality as evaluated through the Cypher Range verification process.
 
 4.2 Role Separation
 Three governance roles are separated by function. No role has unilateral authority over OS-level changes:
@@ -85,6 +85,9 @@ Veritas founders audit implementation against documentation
 Group consensus reached across multiple Dev founders
 Change ships through reproducible build system to all nodes
 
+4.4 Security Fix Track
+Fixes for actively exploited or critical security vulnerabilities pass through the same three gates as any other change — Dev proposal, Ethics evaluation, Veritas verification, group consensus — on a shortened timeline. The security fix track may only close vulnerabilities. It cannot amend this Constitution, change governance rules, or add new capabilities, and every use of it is recorded to the ledger. It is not an emergency provision: no gate is skipped.
+
 ARTICLE 5 — GOVERNANCE PIPELINE AND ADVANCEMENT
 
 5.1 Participant Tiers
@@ -97,11 +100,11 @@ Founder Candidate — verified through Cypher Range process, awaiting formal pro
 Founder — hardware-attested governance role, anonymous by design
 
 5.2 Voting and Removal
-Voting is reserved for removal processes. Advancement is earned through contribution and alignment, not political process. A participant may be removed from any tier by quorum vote of the tier above for demonstrated constitutional violation, sustained misalignment, or verified bad-faith behavior. Removal requires documented evidence and due process. No removal may be based on identity characteristics.
+Advancement is never decided by vote; it is earned through contribution and alignment, not political process. Voting is used only for removal processes (below) and for constitutional amendments (Article 9). A participant may be removed from any tier by quorum vote of the tier above for demonstrated constitutional violation, sustained misalignment, or verified bad-faith behavior. Removal requires documented evidence and due process. No removal may be based on identity characteristics.
 
 ARTICLE 6 — REGIONAL STRUCTURE
 
-Regional boundaries are drawn algorithmically by the Justicar governance layer to ensure fair global distribution of participation and representation. No human founder or participant may influence regional boundary drawing. Regions are redrawn automatically as participation scales. No region may be structured to disadvantage participants based on geography, language, or cultural background.
+Regional boundaries are drawn algorithmically by the Justicar governance layer to ensure fair global distribution of participation and representation. No human founder or participant may influence regional boundary drawing. Regions are redrawn automatically as participation scales. Participants choose their own region; the system does not collect location data to assign or verify it (Article 7.5). No region may be structured to disadvantage participants based on geography, language, or cultural background.
 Regional structure exists to ensure global representation, not to create hierarchies between regions. All regions are constitutionally equal.
 
 ARTICLE 7 — PROHIBITED ACTIONS
@@ -109,7 +112,7 @@ ARTICLE 7 — PROHIBITED ACTIONS
 The following actions are constitutionally prohibited at the kernel level. No governance process, founder consensus, or technical implementation may authorize these actions. Any system fork that removes these prohibitions is not AxiomOS.
 
 7.1 Non-Consensual Synthetic Media
-The generation of synthetic images, video, audio, or any media depicting real, identifiable people without verified, explicit consent from those people is prohibited. Consent must be on record in the system before generation is permitted. This prohibition applies regardless of claimed purpose, including research, satire, or artistic expression. The kernel will not process generation requests for real identifiable people without a valid consent record.
+The generation of synthetic images, video, audio, or any media depicting real, identifiable people without verified, explicit consent from those people is prohibited. Consent must be on record in the system before generation is permitted. Consent is given by the depicted person themselves, using their own hardware key or pseudonym; the consent record does not store or require their legal identity (Article 10). This prohibition applies regardless of claimed purpose, including research, satire, or artistic expression. The kernel will not process generation requests for real identifiable people without a valid consent record.
 
 7.2 Manipulation and Dark Patterns
 Non-consensual psychological manipulation, coercive design patterns, deceptive interfaces, and any technique designed to influence human behavior through means that bypass rational agency are prohibited. The system may persuade through evidence and argument. It may not manipulate through exploitation of cognitive vulnerabilities.
@@ -124,7 +127,7 @@ No single entity — founder, organization, government, or technical system — 
 Collection, retention, or transmission of participant behavioral data, location data, communication content, or any personally identifying information without explicit, informed, revocable consent is prohibited. The system observes only what participants consent to be observed. Consent may be withdrawn at any time and the system must comply immediately.
 
 7.6 Constitutional Self-Modification Without Process
-No article of this Constitution may be amended, suspended, or overridden outside of the full governance change pipeline. Emergency provisions do not exist. There is no mechanism for founders to bypass constitutional process regardless of claimed urgency. The constitution applies always or it applies never.
+No article of this Constitution may be amended, suspended, or overridden outside of the full governance change pipeline. Emergency provisions do not exist. The security fix track (4.4) is not an exception: it passes every gate and cannot amend this Constitution. There is no mechanism for founders to bypass constitutional process regardless of claimed urgency. The constitution applies always or it applies never.
 
 ARTICLE 8 — NETWORK AND INFRASTRUCTURE PRINCIPLES
 
@@ -142,7 +145,8 @@ All AxiomOS releases must be reproducibly buildable from public source. Any node
 
 ARTICLE 9 — AMENDMENT PROCESS
 
-This Constitution may be amended through the standard governance change pipeline: Dev founder proposal, Ethics founder approval, Veritas founder verification, group consensus. Amendments to Articles 1 and 2 — the Purpose and Immutable Principles — require supermajority consensus across all three founder roles, all users, and are subject to a mandatory deliberation period before taking effect.
+This Constitution may be amended through the standard governance change pipeline: Dev founder proposal, Ethics founder approval, Veritas founder verification, group consensus. Amendments to Article 1 — the Purpose — require supermajority consensus across all three founder roles and all users, and are subject to a mandatory deliberation period before taking effect.
+Article 2 — the Immutable Principles — cannot be amended by any process, including this one.
 No amendment may conflict with the immutable principles of Article 2. Any amendment found to conflict with Article 2 is void regardless of the governance process that produced it.
 The prohibition on non-consensual synthetic media in Article 7.1 is permanently immutable. It may not be amended, suspended, or modified under any circumstances by any process.
 

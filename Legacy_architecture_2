@@ -29,6 +29,7 @@ serves as the orchestration layer.
 
 What This Was
 This December 2025 specification documents the Mixture of Experts architecture at the heart of the original Irwin system. Rather than using a single large model, the system distributed cognitive work across specialized nodes — dedicated memory agents, reasoning agents, and code agents — at three different parameter scales. The 9BF orchestration node managed routing decisions.
+This specification describes the intended mesh topology. The system as it actually ran used a planner-driven pipeline that ends at the 9BF face node, documented in Router_architecture.
 This is the earliest formal documentation of the project. Its December 2025 date establishes the project timeline.
 Why the Architecture Evolved Past This
 The MoE mesh architecture was technically sound and proved the distributed cognition concept. The evolution wasn't away from distribution — it was toward a cleaner implementation of it.
